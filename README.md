@@ -53,5 +53,5 @@ npm run dev
 
 - [ ] Move admin stuff to route
 - [ ] Add [rate limiter](https://www.npmjs.com/package/express-rate-limit)?
-- [ ] Experiment with gzip
+- [x] Experiment with gzip
 - [ ] [Admin auth](https://docs.adminjs.co/tutorial-rbac.html)
