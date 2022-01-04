@@ -1,4 +1,6 @@
 'use strict'
+const bcrypt = require('bcrypt')
+
 const {
     Model
 } = require('sequelize')
@@ -41,5 +43,22 @@ module.exports = (sequelize, DataTypes) => {
         sequelize,
         modelName: 'account'
     })
+
+    Account.beforeCreate((user, options) => {
+        return bcrypt.hash(user.password, 10)
+            .then(hash => {
+                console.log(hash)
+                user.password = hash
+            })
+            .catch(err => {
+                throw new Error()
+            })
+    })
+
+    Account.prototype.validPassword = async function(password) {
+        return await bcrypt.compare(password, this.password);
+    }
+
+
     return Account
 }
