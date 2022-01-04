@@ -14,6 +14,10 @@ const db = require('./models')
 
 const adminJs = new AdminJS({
     databases: [db],
+    resources: [
+        { resource: db.account },
+        { resource: db.character }
+    ],
     rootPath: '/admin',
 })
 
