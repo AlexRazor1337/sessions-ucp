@@ -48,3 +48,8 @@ npm run dev
 
 - [AdminJS Docs](https://docs.adminjs.co/)
 - [Sequalize Docs](https://sequelize.org/v7/)
+
+### TODOs
+
+- [ ] Move admin stuff to route
+- [ ] Add [rate limiter](https://www.npmjs.com/package/express-rate-limit)?
