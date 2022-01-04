@@ -34,7 +34,17 @@
 
 ## Development
 
-To clear and re-migrate DB, use
+To clear and re-migrate DB, use:
 ```
 npm run refresh
 ```
+
+To run project with **nodemon**:
+```
+npm run dev
+```
+
+### Useful links
+
+- [AdminJS Docs](https://docs.adminjs.co/)
+- [Sequalize Docs](https://sequelize.org/v7/)
