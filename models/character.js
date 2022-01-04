@@ -14,19 +14,52 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     Character.init({
-        name: DataTypes.STRING,
-        health: DataTypes.INTEGER,
+        name: {
+            type: DataTypes.STRING,
+            validate: {
+                len: [4, 32]
+            }
+        },
+        health: {
+            type: DataTypes.INTEGER,
+            validate: {
+                min: 0,
+                max: 100
+            }
+        },
         position: DataTypes.STRING,
-        skin: DataTypes.INTEGER,
-        description: DataTypes.STRING,
-        lifes: DataTypes.INTEGER,
+        skin: {
+            type: DataTypes.INTEGER,
+            validate: {
+                min: 1,
+                max: 350
+            }
+        },
+        description: {
+            type: DataTypes.STRING,
+            validate: {
+                notEmpty: true,
+                len: [1, 256]
+            }
+        },
+        lifes: {
+            type: DataTypes.INTEGER,
+            validate: {
+                min: 0,
+            }
+        },
         sex: DataTypes.ENUM(['male', 'female']),
-        state: DataTypes.INTEGER,
+        state: DataTypes.ENUM(['normal', 'laying']),
         accountId: DataTypes.INTEGER,
-        timer: DataTypes.INTEGER
+        timer: {
+            type: DataTypes.INTEGER,
+            validate: {
+                min: 0,
+            }
+        },
     }, {
         sequelize,
-        modelName: 'character',
+        modelName: 'character'
     })
 
     return Character

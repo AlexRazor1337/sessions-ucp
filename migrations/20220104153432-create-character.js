@@ -40,8 +40,8 @@ module.exports = {
             },
             state: {
                 allowNull: false,
-                type: Sequelize.INTEGER,
-                defaultValue: 0
+                type: Sequelize.ENUM(['normal', 'laying']),
+                defaultValue: 'normal'
             },
             accountId: {
                 allowNull: false,

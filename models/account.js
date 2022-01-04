@@ -14,15 +14,35 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     Account.init({
-        username: DataTypes.STRING,
-        password: DataTypes.STRING,
-        serial: DataTypes.STRING,
-        email: DataTypes.STRING,
-        status: DataTypes.INTEGER,
+        username: {
+            type: DataTypes.STRING,
+            validate: {
+                len: [6, 32]
+            }
+        },
+        password: {
+            type: DataTypes.STRING,
+            validate: {
+                len: [6, 32]
+            }
+        },
+        email: {
+            type: DataTypes.STRING,
+            validate: {
+                isEmail: true
+            }
+        },
+        serial: {
+            type: DataTypes.STRING,
+            validate: {
+                len: 32
+            }
+        },
+        status: DataTypes.ENUM(['user', 'advicer', 'moderator', 'admin', 'superadmin']),
         autologin: DataTypes.BOOLEAN
     }, {
         sequelize,
-        modelName: 'account',
+        modelName: 'account'
     })
     return Account
 }

@@ -13,10 +13,7 @@ const port = process.env.PORT || 3000
 const db = require('./models')
 
 const adminJs = new AdminJS({
-    databases: [db], // you can still load an entire database and adjust just one resource
-    // resources: [{
-    //     resource: db.Account
-    // }],
+    databases: [db],
     rootPath: '/admin',
 })
 

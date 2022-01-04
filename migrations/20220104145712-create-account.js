@@ -29,8 +29,8 @@ module.exports = {
             },
             status: {
                 allowNull: false,
-                type: Sequelize.INTEGER,
-                defaultValue: 0
+                type: Sequelize.ENUM(['user', 'advicer', 'moderator', 'admin', 'superadmin']),
+                defaultValue: 'user'
             },
             autologin: {
                 allowNull: false,
