@@ -33,10 +33,7 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
         serial: {
-            type: DataTypes.STRING,
-            validate: {
-                len: 32
-            }
+            type: DataTypes.STRING
         },
         status: DataTypes.ENUM(['user', 'advicer', 'moderator', 'admin', 'superadmin']),
         autologin: DataTypes.BOOLEAN
