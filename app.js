@@ -18,8 +18,9 @@ const adminJs = require('./routes/admin')
 // const router = AdminJSExpress.buildRouter(adminJs)
 const router = AdminJSExpress.buildAuthenticatedRouter(adminJs, {
     authenticate: async (email, password) => {
+        const allowedRoles = ['admin', 'superadmin']
         const user = await db.account.findOne({ email })
-        if (user) {
+        if (user && allowedRoles.includes(user.status)) {
             const matched = await bcrypt.compare(password, user.password)
             if (matched) {
                 return user
