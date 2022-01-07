@@ -51,7 +51,8 @@ npm run dev
 
 ### TODOs
 
-- [ ] Move admin stuff to route
+- [x] Move admin stuff to route
 - [ ] Add [rate limiter](https://www.npmjs.com/package/express-rate-limit)?
 - [x] Experiment with gzip
-- [ ] [Admin auth](https://docs.adminjs.co/tutorial-rbac.html)
+- [x] [Admin auth](https://docs.adminjs.co/tutorial-rbac.html)
+- [ ] Generate secret for cookiePassword
