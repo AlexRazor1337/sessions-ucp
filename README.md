@@ -55,4 +55,4 @@ npm run dev
 - [ ] Add [rate limiter](https://www.npmjs.com/package/express-rate-limit)?
 - [x] Experiment with gzip
 - [x] [Admin auth](https://docs.adminjs.co/tutorial-rbac.html)
-- [ ] Generate secret for cookiePassword
+- [x] Secret in env
