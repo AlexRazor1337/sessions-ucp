@@ -38,9 +38,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING
         },
         status: DataTypes.ENUM(['user', 'advicer', 'moderator', 'admin', 'superadmin']),
-        autologin: DataTypes.BOOLEAN
+        autologin: DataTypes.BOOLEAN,
     }, {
         sequelize,
+        updatedAt: false,
         modelName: 'account'
     })
 
