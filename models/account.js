@@ -42,7 +42,11 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         sequelize,
         updatedAt: false,
-        modelName: 'account'
+        modelName: 'account',
+        defaultScope: {
+            attributes: { exclude: ['password'] },
+        }
+          
     })
 
     Account.beforeCreate((user, options) => {
@@ -59,7 +63,6 @@ module.exports = (sequelize, DataTypes) => {
     Account.prototype.validPassword = async function(password) {
         return await bcrypt.compare(password, this.password);
     }
-
 
     return Account
 }
