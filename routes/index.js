@@ -1,4 +1,9 @@
+// eslint-disable-next-line security/detect-non-literal-require
+
 module.exports = function(app) {
-    app.use('/admin', require('./admin'))
-    app.use('/accounts', require('./accounts'))
+    [
+        '/admin',
+        '/accounts',
+        '/auth'
+    ].forEach(route => app.use(route, require(`.${route}`)))
 }
