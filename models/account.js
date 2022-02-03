@@ -65,11 +65,11 @@ module.exports = (sequelize, DataTypes) => {
             })
     })
 
-    Account.prototype.validPassword = async (password) => {
+    Account.prototype.validPassword = async function (password) {
         return await bcrypt.compare(password, this.password);
     }
 
-    Account.prototype.generateAccessToken = () => {
+    Account.prototype.generateAccessToken = function () {
         const { id, username } = this;
         return jwt.sign({ id, username }, process.env.TOKEN_SECRET, { expiresIn: process.env.TOKEN_EXPIRATION_TIME })
     }

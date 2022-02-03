@@ -29,6 +29,7 @@
             "error",
             "never"
         ],
-        "eqeqeq": ["error", "always"]
+        "eqeqeq": ["error", "always"],
+        "node/no-unsupported-features/es-syntax": ["off" ]
     }
 }
