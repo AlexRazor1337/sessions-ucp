@@ -1,5 +1,6 @@
 'use strict'
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 const {
     Model
@@ -48,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         scopes: {
             full: {
-                attributes: { }
+                attributes: {}
             },
         }
     })
@@ -64,8 +65,13 @@ module.exports = (sequelize, DataTypes) => {
             })
     })
 
-    Account.prototype.validPassword = async function (password) {
+    Account.prototype.validPassword = async (password) => {
         return await bcrypt.compare(password, this.password);
+    }
+
+    Account.prototype.generateAccessToken = () => {
+        const { id, username } = this;
+        return jwt.sign({ id, username }, process.env.TOKEN_SECRET, { expiresIn: process.env.TOKEN_EXPIRATION_TIME })
     }
 
     return Account

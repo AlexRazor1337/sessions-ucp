@@ -58,3 +58,4 @@ npm run dev
 - [x] Secret in env
 - [ ] Add option to disable gzip from `.env`
 - [ ] List all possible `.env` filed in README
+- [ ] Look at [helmet](https://www.npmjs.com/package/helmet)
