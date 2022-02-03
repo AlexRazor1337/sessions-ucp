@@ -27,7 +27,7 @@
         ],
         "semi": [
             "error",
-            "never"
+            "always"
         ],
         "eqeqeq": ["error", "always"],
         "node/no-unsupported-features/es-syntax": ["off" ]

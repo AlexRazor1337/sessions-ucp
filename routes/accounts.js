@@ -1,10 +1,10 @@
-const accountRouter = require('express').Router()
-const Account = require('../models').account
+const accountRouter = require('express').Router();
+const Account = require('../models').account;
 
 
 accountRouter.get('/', async (req, res) => {
-    res.send(await Account.findAll())
-})
+    res.send(await Account.findAll());
+});
 
 
-module.exports = accountRouter
+module.exports = accountRouter;
