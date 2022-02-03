@@ -52,7 +52,9 @@ npm run dev
 ### TODOs
 
 - [x] Move admin stuff to route
-- [ ] Add [rate limiter](https://www.npmjs.com/package/express-rate-limit)?
+- [ ] Add [rate limiter](https://www.npmjs.com/package/express-rate-limit) or [express-brute](https://www.npmjs.com/package/express-brute?) and apply to the login route
 - [x] Experiment with gzip
 - [x] [Admin auth](https://docs.adminjs.co/tutorial-rbac.html)
 - [x] Secret in env
+- [ ] Add option to disable gzip from `.env`
+- [ ] List all possible `.env` filed in README

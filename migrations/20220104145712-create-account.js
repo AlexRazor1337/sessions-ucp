@@ -15,7 +15,7 @@ module.exports = {
             },
             password: {
                 allowNull: false,
-                type: Sequelize.STRING(72)
+                type: Sequelize.STRING(60)
             },
             serial: {
                 allowNull: true,

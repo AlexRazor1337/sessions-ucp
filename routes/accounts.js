@@ -2,6 +2,7 @@ const accountRouter = require('express').Router()
 const Account = require('../models').account
 const { check, validationResult } = require('express-validator');
 
+
 accountRouter.get('/', async (req, res) => {
     res.send(await Account.findAll())
 })
@@ -22,12 +23,13 @@ accountRouter.post('/',
         try {
             const account = await Account.create({username, password, email})
             delete account.password // Because scopes don't work with create
-            res.send(account)
+            res.status(201).send(account)
         } catch (e) {
             res.status(400).send({'error': e.errors[0].message})
         }
     }
 )
+
 
 
 module.exports = accountRouter
