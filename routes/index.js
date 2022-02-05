@@ -2,8 +2,9 @@
 
 module.exports = function(app) {
     [
+        '/auth',
         '/admin',
         '/accounts',
-        '/auth'
+        '/characters'
     ].forEach(route => app.use(route, require(`.${route}`)));
 };
