@@ -77,6 +77,9 @@ const router = AdminJSExpress.buildAuthenticatedRouter(adminJsConfig, {
         return false;
     },
     cookiePassword: process.env.SECRET,
+}, null, {
+    resave: false,
+    saveUninitialized: false
 });
 
 module.exports = router;
