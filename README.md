@@ -56,7 +56,7 @@ npm run dev
 - [x] Experiment with gzip
 - [x] [Admin auth](https://docs.adminjs.co/tutorial-rbac.html)
 - [x] Secret in env
-- [ ] Add option to disable gzip from `.env`
+- [x] Add option to disable gzip from `.env`
 - [ ] List all possible `.env` filed in README
 - [ ] Look at [helmet](https://www.npmjs.com/package/helmet)
 - [ ] Move to [fastest-validator](https://www.npmjs.com/package/fastest-validator)
