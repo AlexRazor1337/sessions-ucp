@@ -1,10 +1,19 @@
 const authRouter = require('express').Router();
 const Account = require('../models').account;
 const authMiddleware = require('../middleware/auth');
+const rateLimit = require('express-rate-limit');
 const { check, validationResult } = require('express-validator');
+
+const limiter = rateLimit({
+    windowMs: 10 * 60 * 1000, // 10 minutes
+    max: 50,
+    standardHeaders: false,
+    legacyHeaders: false,
+});
 
 
 authRouter.post('/signup',
+    limiter,
     check('username').isLength({ min: 6, max: 32 }),
     check('email').isEmail(),
     check('password').isLength({ min: 6 }),
@@ -27,6 +36,7 @@ authRouter.post('/signup',
 );
 
 authRouter.post('/login',
+    limiter,
     check('username').isLength({ min: 6, max: 32 }),
     check('password').isLength({ min: 6 }),
     async (req, res) => {
@@ -37,7 +47,7 @@ authRouter.post('/login',
 
         const { username, password } = req.body;
         try {
-            const account = await Account.scope('full').findOne({ where: { username }});
+            const account = await Account.scope('full').findOne({ where: { username } });
             if (account && account.validPassword(password)) {
                 account.dataValues.token = account.generateAccessToken();
                 delete account.dataValues.password;

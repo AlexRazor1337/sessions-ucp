@@ -1,10 +1,10 @@
-const bcrypt = require('bcrypt')
-const AdminJS = require('adminjs')
-const AdminJSExpress = require('@adminjs/express')
-const AdminJSSequelize = require('@adminjs/sequelize')
-AdminJS.registerAdapter(AdminJSSequelize)
+const bcrypt = require('bcrypt');
+const AdminJS = require('adminjs');
+const AdminJSExpress = require('@adminjs/express');
+const AdminJSSequelize = require('@adminjs/sequelize');
+AdminJS.registerAdapter(AdminJSSequelize);
 
-const db = require('../models')
+const db = require('../models');
 
 const adminJsConfig = new AdminJS({
     rootPath: '/admin',
@@ -64,19 +64,19 @@ const adminJsConfig = new AdminJS({
             }
         }
     ],
-})
+});
 
 const router = AdminJSExpress.buildAuthenticatedRouter(adminJsConfig, {
     authenticate: async (email, password) => {
-        const allowedRoles = ['admin', 'superadmin']
-        const user = await db.account.scope('full').findOne({ where: { email }})
+        const allowedRoles = ['admin', 'superadmin'];
+        const user = await db.account.scope('full').findOne({ where: { email }});
         if (user && allowedRoles.includes(user.status)) {
-            const matched = await bcrypt.compare(password, user.password)
-            if (matched) return user
+            const matched = await bcrypt.compare(password, user.password);
+            if (matched) return user;
         }
-        return false
+        return false;
     },
     cookiePassword: process.env.SECRET,
-})
+});
 
-module.exports = router
+module.exports = router;
