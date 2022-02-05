@@ -14,7 +14,21 @@
     DB_USER=user
     DB_PASSWORD=pass
     DB_HOST=127.0.0.1
+    SECRET=
+    TOKEN_SECRET=
     ```
+    `SECRET` and `TOKEN_SECRET` preferably shoud be randomly generated hashes.
+
+    Optional fields
+    ```
+    ADMIN_LOGIN=
+    ADMIN_MAIL=
+    ADMIN_PASS=
+    BUILT_IN_GZIP=
+    TOKEN_EXPIRATION_TIME=
+    ```
+
+    `TOKEN_EXPIRATION_TIME` defaults to `1h`, `ADMIN_*` fields are used in a seeder, which creates an admin user for the system.
 
 3. Init CLI
     ```
@@ -52,11 +66,11 @@ npm run dev
 ### TODOs
 
 - [x] Move admin stuff to route
-- [ ] Add [rate limiter](https://www.npmjs.com/package/express-rate-limit) or [express-brute](https://www.npmjs.com/package/express-brute) and apply to the login route
+- [x] Add [rate limiter](https://www.npmjs.com/package/express-rate-limit) or [express-brute](https://www.npmjs.com/package/express-brute) and apply to the some auth routes
 - [x] Experiment with gzip
 - [x] [Admin auth](https://docs.adminjs.co/tutorial-rbac.html)
 - [x] Secret in env
 - [x] Add option to disable gzip from `.env`
-- [ ] List all possible `.env` filed in README
+- [x] List all possible `.env` fields in README
 - [ ] Look at [helmet](https://www.npmjs.com/package/helmet)
 - [ ] Move to [fastest-validator](https://www.npmjs.com/package/fastest-validator)

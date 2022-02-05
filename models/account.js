@@ -66,7 +66,7 @@ module.exports = (sequelize, DataTypes) => {
 
     Account.prototype.generateAccessToken = function () {
         const { id, username } = this;
-        return jwt.sign({ id, username }, process.env.TOKEN_SECRET, { expiresIn: process.env.TOKEN_EXPIRATION_TIME });
+        return jwt.sign({ id, username }, process.env.TOKEN_SECRET, { expiresIn: process.env.TOKEN_EXPIRATION_TIME || '1h'});
     };
 
     return Account;
