@@ -13,17 +13,19 @@ charactersRouter.get('/', authMiddleware, async (req, res) => {
 });
 
 
-charactersRouter.post('/', authMiddleware, validationMiddleware(characterCreateSchema), async (req, res) => {
-    const accountId = req.account.id;
-    const charactersCount = await Character.count({ where: { accountId } });
-    if (charactersCount === 4) {
-        return res.status(400).send('You can\t create more characters!');
+charactersRouter.post('/', authMiddleware,
+    validationMiddleware(characterCreateSchema),
+    async (req, res) => {
+        const accountId = req.account.id;
+        const charactersCount = await Character.count({ where: { accountId } });
+        if (charactersCount === 4) {
+            return res.status(400).send('You can\t create more characters!');
+        }
+
+        const {name, skin, description, sex} = req.body;
+        const character = await Character.create({name, skin, description, sex, accountId});
+        res.send(character);
     }
-
-    const {name, skin, description, sex} = req.body;
-    const character = await Character.create({name, skin, description, sex, accountId});
-    res.send(character);
-});
-
+);
 
 module.exports = charactersRouter;

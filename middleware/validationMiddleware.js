@@ -6,6 +6,6 @@ const customErrorHandler = (err, req, res, next) => {
 };
 
 
-module.exports = (schema) => {
+module.exports = (schema) => { // TODO Remake without lib using only fastest-validator?
     return BodyValidator(schema, customErrorHandler);
 };

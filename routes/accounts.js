@@ -1,7 +1,8 @@
 const accountRouter = require('express').Router();
 const Account = require('../models').account;
 const authMiddleware = require('../middleware/auth');
-const { check, validationResult } = require('express-validator');
+const validationMiddleware = require('../middleware/validationMiddleware');
+const accountUpdateSchema = require('../validationSchemas/accountUpdate');
 
 
 accountRouter.get('/', async (req, res) => {
@@ -10,14 +11,8 @@ accountRouter.get('/', async (req, res) => {
 
 
 accountRouter.patch('/', authMiddleware,
-    check('username').optional().isLength({ min: 6, max: 32 }),
-    check('autologin').optional().isBoolean(),
+    validationMiddleware(accountUpdateSchema),
     async (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
-
         const { username, autologin } = req.body;
         await Account.update({ username, autologin }, { where: {id: req.account.id}});
         res.send();

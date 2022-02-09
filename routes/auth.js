@@ -2,7 +2,9 @@ const authRouter = require('express').Router();
 const Account = require('../models').account;
 const authMiddleware = require('../middleware/auth');
 const rateLimit = require('express-rate-limit');
-const { check, validationResult } = require('express-validator');
+const validationMiddleware = require('../middleware/validationMiddleware');
+const accountRegistrationSchema = require('../validationSchemas/accountRegistration');
+const loginSchema = require('../validationSchemas/login');
 
 const limiter = rateLimit({
     windowMs: 10 * 60 * 1000, // 10 minutes
@@ -14,16 +16,8 @@ const limiter = rateLimit({
 
 authRouter.post('/signup',
     limiter,
-    check('username').isLength({ min: 6, max: 32 }),
-    check('email').isEmail(),
-    check('password').isLength({ min: 6 }),
-    check('password_confirmation').custom((value, { req }) => value === req.body.password),
+    validationMiddleware(accountRegistrationSchema),
     async (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
-
         const { username, password, email } = req.body;
         try {
             const account = await Account.create({ username, password, email });
@@ -37,14 +31,8 @@ authRouter.post('/signup',
 
 authRouter.post('/login',
     limiter,
-    check('username').isLength({ min: 6, max: 32 }),
-    check('password').isLength({ min: 6 }),
+    validationMiddleware(loginSchema),
     async (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
-
         const { username, password } = req.body;
         try {
             const account = await Account.scope('full').findOne({ where: { username } });

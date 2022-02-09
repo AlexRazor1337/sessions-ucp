@@ -73,4 +73,4 @@ npm run dev
 - [x] Add option to disable gzip from `.env`
 - [x] List all possible `.env` fields in README
 - [ ] Look at [helmet](https://www.npmjs.com/package/helmet)
-- [ ] Move to [fastest-validator](https://www.npmjs.com/package/fastest-validator)
+- [x] Move to [fastest-validator](https://www.npmjs.com/package/fastest-validator)
