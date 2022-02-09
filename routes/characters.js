@@ -1,16 +1,9 @@
 const charactersRouter = require('express').Router();
-const Account = require('../models').account;
 const Character = require('../models').character;
 const authMiddleware = require('../middleware/auth');
 const Validator = new (require('fastest-validator'));
 
-const characterValidationSchema = {
-    name: { type: 'string', min: 4, max: 32 },
-    skin: { type: 'number', min: 1, max: 350, integer: true, optional: true },
-    description: { type: 'string', min: 1, max: 256, optional: true },
-    sex: { type: 'enum', values: ['male', 'female'] }
-};
-const check = Validator.compile(characterValidationSchema);
+const check = Validator.compile(require('../validationSchemas/character'));
 
 charactersRouter.get('/', authMiddleware, async (req, res) => {
     const accountId = req.account.id;
