@@ -1,6 +1,8 @@
 const authRouter = require('express').Router();
 const Account = require('../models').account;
+const invalidatedTokens = require('../models').invalidatedTokens;
 const authMiddleware = require('../middleware/auth');
+const jwt = require('jsonwebtoken');
 const rateLimit = require('express-rate-limit');
 const validationMiddleware = require('../middleware/validationMiddleware');
 const accountRegistrationSchema = require('../validationSchemas/accountRegistration');
@@ -51,6 +53,13 @@ authRouter.post('/login',
 
 authRouter.get('/profile', authMiddleware, (req, res) => {
     return res.status(200).send(req.account);
+});
+
+authRouter.get('/logout', authMiddleware, async (req, res) => {
+    const token = req.token;
+    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+    await invalidatedTokens.create({ token, expirationTime: decodedToken.exp });
+    return res.send();
 });
 
 module.exports = authRouter;
