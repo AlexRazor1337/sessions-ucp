@@ -55,7 +55,7 @@ authRouter.post('/login',
             }
             return res.status(401).send();
         } catch (e) {
-            console.log(e);
+            console.log('error auth', e);
             return res.status(400).send();
         }
     }

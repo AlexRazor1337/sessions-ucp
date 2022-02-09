@@ -52,7 +52,6 @@ module.exports = (sequelize, DataTypes) => {
     Account.beforeCreate((user, options) => {
         return bcrypt.hash(user.password, 10)
             .then(hash => {
-                console.log(hash);
                 user.password = hash;
             })
             .catch(err => {

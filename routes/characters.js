@@ -1,9 +1,9 @@
 const charactersRouter = require('express').Router();
 const Character = require('../models').character;
 const authMiddleware = require('../middleware/auth');
-const Validator = new (require('fastest-validator'));
+const validationMiddleware = require('../middleware/validationMiddleware');
+const characterCreateSchema = require('../validationSchemas/characterCreation');
 
-const check = Validator.compile(require('../validationSchemas/character'));
 
 charactersRouter.get('/', authMiddleware, async (req, res) => {
     const accountId = req.account.id;
@@ -13,12 +13,7 @@ charactersRouter.get('/', authMiddleware, async (req, res) => {
 });
 
 
-charactersRouter.post('/', authMiddleware, async (req, res) => {
-    const validationResult = check(req.body);
-    if (validationResult !== true) {
-        return res.status(422).send(validationResult.map(error => error.message));
-    }
-
+charactersRouter.post('/', authMiddleware, validationMiddleware(characterCreateSchema), async (req, res) => {
     const accountId = req.account.id;
     const charactersCount = await Character.count({ where: { accountId } });
     if (charactersCount === 4) {
