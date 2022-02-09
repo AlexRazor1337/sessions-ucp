@@ -80,3 +80,4 @@ npm run dev
 - [x] List all possible `.env` fields in README
 - [ ] Look at [helmet](https://www.npmjs.com/package/helmet)
 - [x] Move to [fastest-validator](https://www.npmjs.com/package/fastest-validator)
+- [ ] Add a cron job to empty invalidated tokens table
