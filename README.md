@@ -53,6 +53,12 @@ To clear and re-migrate DB, use:
 npm run refresh
 ```
 
+Create admin user with data specified in `.env`:
+```
+npm run seed
+```
+
+
 To run project with **nodemon**:
 ```
 npm run dev
