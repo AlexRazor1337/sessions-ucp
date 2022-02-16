@@ -22,9 +22,24 @@ charactersRouter.post('/', authMiddleware,
             return res.status(400).send('You can\t create more characters!');
         }
 
-        const {name, skin, description, sex} = req.body;
-        const character = await Character.create({name, skin, description, sex, accountId});
+        const { name, skin, description, sex } = req.body;
+        const character = await Character.create({ name, skin, description, sex, accountId });
         res.send(character);
+    }
+);
+
+
+charactersRouter.delete('/:id', authMiddleware,
+    async (req, res) => {
+        const accountId = req.account.id;
+        const charId = req.params.id;
+
+        const result = await Character.destroy({ where: { id: charId, accountId } });
+        if (result) {
+            res.send({ 'message': 'Character was deleted successfully!' });
+        } else {
+            res.status(400).send({ 'error': 'Can\'t delete this character!' });
+        }
     }
 );
 
