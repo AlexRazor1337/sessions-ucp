@@ -10,6 +10,7 @@ if (process.env.BUILT_IN_GZIP)
 const port = process.env.PORT || 3000;
 
 require('./routes')(app);
+require('./jobs')();
 
 app.listen(port, () => {
     if (process.env.NODE_ENV === 'production') console.log('App started at port ' + port);
