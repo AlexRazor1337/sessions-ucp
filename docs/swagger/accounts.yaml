@@ -1,0 +1,11 @@
+paths:
+  /accounts:
+    get:
+      tags:
+        - Account
+      summary: Gets all accounts
+      produces:
+      - application/json
+      responses:
+        200:
+          description: An array of account objects
