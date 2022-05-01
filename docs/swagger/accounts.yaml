@@ -9,3 +9,35 @@ paths:
       responses:
         200:
           description: An array of account objects
+    patch:
+      tags:
+        - Account
+      summary: Changes account data
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: Fields to change
+          description: New values of the user fields
+          required: false
+          schema:
+            $ref: '#/definitions/fieldsToChange'
+      responses:
+        200:
+          description: An account was changed successfully
+        401:
+          description: Unauthorized
+definitions:
+  fieldsToChange:
+    type: object
+    properties:
+      account:
+        type: object
+        properties:
+          username:
+            type: string
+            min: 6
+            max: 32
+          autologin:
+            type: boolean
+
