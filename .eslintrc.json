@@ -30,6 +30,6 @@
             "always"
         ],
         "eqeqeq": ["error", "always"],
-        "node/no-unsupported-features/es-syntax": ["off" ]
+        "node/no-unsupported-features/es-syntax": [ "off" ]
     }
 }

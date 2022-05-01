@@ -81,3 +81,5 @@ npm run dev
 - [ ] Look at [helmet](https://www.npmjs.com/package/helmet)
 - [x] Move to [fastest-validator](https://www.npmjs.com/package/fastest-validator)
 - [x] Add a cron job to empty invalidated tokens table
+- [ ] Document all routes
+- [ ] Move server from `app.js`

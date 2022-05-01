@@ -26,7 +26,9 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-security": "^1.4.0",
     "nodemon": "^2.0.15",
-    "sequelize-cli": "^6.3.0"
+    "sequelize-cli": "^6.3.0",
+    "swagger-jsdoc": "^6.2.1",
+    "swagger-ui-express": "^4.3.0"
   },
   "dependencies": {
     "@adminjs/express": "^4.0.1",
